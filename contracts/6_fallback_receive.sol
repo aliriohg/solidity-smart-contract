@@ -18,6 +18,15 @@ existe receive?        fallback()
     |           |
 receive()   fallback()
 */
-contract ethSend{
+contract Fallback_Receive{
 
+    event log(string name,address sender,uint amount,bytes data);
+
+    fallback()external payable{
+        emit log("fallback",msg.sender, msg.value,msg.data);
+    }
+
+    receive()external payable{
+        emit log("receive",msg.sender, msg.value,"");
+    }
 }
